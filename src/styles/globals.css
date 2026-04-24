@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-serif), "Iowan Old Style", "Apple Garamond",
+    Baskerville, "Times New Roman", serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --color-paper: oklch(0.175 0.012 60);
+  --color-paper-raised: oklch(0.205 0.014 62);
+  --color-paper-sunken: oklch(0.145 0.01 58);
+
+  --color-ink: oklch(0.945 0.012 85);
+  --color-ink-muted: oklch(0.735 0.014 75);
+  --color-ink-subtle: oklch(0.555 0.012 68);
+  --color-ink-faint: oklch(0.395 0.01 62);
+
+  --color-rule: oklch(0.285 0.01 65);
+  --color-rule-strong: oklch(0.36 0.012 68);
+
+  --color-amber: oklch(0.78 0.13 70);
+  --color-amber-deep: oklch(0.62 0.14 62);
+  --color-amber-wash: oklch(0.78 0.13 70 / 0.08);
+
+  --color-vermillion: oklch(0.635 0.195 32);
+  --color-vermillion-deep: oklch(0.555 0.205 30);
+  --color-vermillion-wash: oklch(0.635 0.195 32 / 0.1);
+
+  --color-oxidized: oklch(0.56 0.145 42);
+  --color-oxidized-wash: oklch(0.56 0.145 42 / 0.12);
+
+  --color-patina: oklch(0.685 0.075 95);
+
+  --ease-quilled: cubic-bezier(0.2, 0.7, 0.15, 1);
+}
+
+/* Explicit :root mirror — belt-and-suspenders so var() always resolves
+   even if @theme injection times out during Turbopack HMR. */
+:root {
+  --color-paper: oklch(0.175 0.012 60);
+  --color-paper-raised: oklch(0.205 0.014 62);
+  --color-paper-sunken: oklch(0.145 0.01 58);
+
+  --color-ink: oklch(0.945 0.012 85);
+  --color-ink-muted: oklch(0.735 0.014 75);
+  --color-ink-subtle: oklch(0.555 0.012 68);
+  --color-ink-faint: oklch(0.395 0.01 62);
+
+  --color-rule: oklch(0.285 0.01 65);
+  --color-rule-strong: oklch(0.36 0.012 68);
+
+  --color-amber: oklch(0.78 0.13 70);
+  --color-amber-deep: oklch(0.62 0.14 62);
+  --color-amber-wash: oklch(0.78 0.13 70 / 0.08);
+
+  --color-vermillion: oklch(0.635 0.195 32);
+  --color-vermillion-deep: oklch(0.555 0.205 30);
+  --color-vermillion-wash: oklch(0.635 0.195 32 / 0.1);
+
+  --color-oxidized: oklch(0.56 0.145 42);
+  --color-oxidized-wash: oklch(0.56 0.145 42 / 0.12);
+
+  --color-patina: oklch(0.685 0.075 95);
+}
+
+html {
+  color-scheme: dark;
+  background-color: oklch(0.175 0.012 60);
+}
+
+body {
+  background-color: oklch(0.175 0.012 60);
+  color: oklch(0.945 0.012 85);
+  font-family: var(--font-sans);
+  font-feature-settings:
+    "kern",
+    "liga",
+    "calt";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  em {
+    color: var(--color-amber);
+    font-style: italic;
+  }
+
+  ::selection {
+    background: var(--color-vermillion-wash);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-rule) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-rule);
+    border: 3px solid var(--color-paper);
+    border-radius: 9999px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-rule-strong);
+  }
+}
+
+@layer components {
+  .rule-hair {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-rule) 12%,
+      var(--color-rule) 88%,
+      transparent
+    );
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: "";
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--color-rule);
+    vertical-align: middle;
+  }
+
+  .ornament::before {
+    margin-right: 0.75rem;
+  }
+
+  .ornament::after {
+    margin-left: 0.75rem;
+  }
+
+  .citation-ref {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--color-vermillion);
+    text-decoration: underline;
+    text-decoration-color: var(--color-vermillion);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    cursor: help;
+    transition:
+      color 150ms var(--ease-quilled),
+      text-decoration-color 150ms var(--ease-quilled),
+      text-decoration-thickness 150ms var(--ease-quilled);
+    white-space: nowrap;
+  }
+
+  .citation-ref:hover {
+    color: var(--color-vermillion-deep);
+    text-decoration-thickness: 2px;
+  }
+}
+
+@keyframes msg-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(300%, 0, 0);
+  }
+}
+
+@keyframes patina-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheet-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.anim-msg-enter {
+  animation: msg-enter 320ms var(--ease-quilled) both;
+}
+
+.anim-scan {
+  animation: scan-line 1200ms linear infinite;
+  will-change: transform;
+}
+
+.anim-patina {
+  animation: patina-pulse 1800ms ease-in-out infinite;
+}
+
+.anim-fade-in {
+  animation: fade-in 240ms var(--ease-quilled) both;
+}
+
+.anim-sheet-rise {
+  animation: sheet-rise 320ms var(--ease-quilled) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-msg-enter,
+  .anim-scan,
+  .anim-patina,
+  .anim-fade-in,
+  .anim-sheet-rise {
+    animation: none !important;
+  }
+}
