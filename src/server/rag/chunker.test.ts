@@ -80,15 +80,22 @@ describe("chunkPage", () => {
   });
 
   it("throws when overlap >= chunkSize", () => {
-    expect(() => chunkPage("hello", 1, 0, { chunkSize: 100, overlap: 100 })).toThrow();
-    expect(() => chunkPage("hello", 1, 0, { chunkSize: 50, overlap: 100 })).toThrow();
+    expect(() =>
+      chunkPage("hello", 1, 0, { chunkSize: 100, overlap: 100 }),
+    ).toThrow();
+    expect(() =>
+      chunkPage("hello", 1, 0, { chunkSize: 50, overlap: 100 }),
+    ).toThrow();
   });
 });
 
 describe("chunkPages", () => {
   it("assigns increasing chunkIndex across pages", () => {
     const longPage = "句子。".repeat(300);
-    const chunks = chunkPages([longPage, longPage, longPage], { chunkSize: 200, overlap: 50 });
+    const chunks = chunkPages([longPage, longPage, longPage], {
+      chunkSize: 200,
+      overlap: 50,
+    });
     for (let i = 1; i < chunks.length; i++) {
       expect(chunks[i]!.chunkIndex).toBe(chunks[i - 1]!.chunkIndex + 1);
     }

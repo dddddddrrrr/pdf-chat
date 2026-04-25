@@ -103,9 +103,7 @@ export function UploadPanel() {
         aria-busy={busy}
         aria-label="上传 PDF"
         className={`group border-rule relative cursor-pointer overflow-hidden border-t border-b px-5 py-6 transition-colors duration-200 select-none ${
-          dragActive
-            ? "bg-amber-wash border-amber"
-            : "hover:bg-paper-sunken/50"
+          dragActive ? "bg-amber-wash border-amber" : "hover:bg-paper-sunken/50"
         } ${busy ? "cursor-wait opacity-95" : ""}`}
       >
         <span
@@ -115,7 +113,7 @@ export function UploadPanel() {
         {!busy && (
           <div className="flex items-baseline justify-between gap-4">
             <div className="min-w-0">
-              <p className="font-serif text-ink text-base leading-tight">
+              <p className="text-ink font-serif text-base leading-tight">
                 {dragActive ? "松开上传" : "选择或拖入 PDF"}
               </p>
               <p className="text-ink-muted mt-1 font-sans text-xs">
@@ -130,9 +128,7 @@ export function UploadPanel() {
 
         {busy && (
           <div className="flex flex-col gap-2">
-            <p className="font-serif text-ink text-sm">
-              {PHASE_LABEL[phase]}…
-            </p>
+            <p className="text-ink font-serif text-sm">{PHASE_LABEL[phase]}…</p>
             {currentName && (
               <p className="text-ink-muted truncate font-mono text-[11px]">
                 {currentName}

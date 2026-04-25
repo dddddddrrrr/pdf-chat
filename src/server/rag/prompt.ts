@@ -17,7 +17,8 @@ If you violate any rule, the user will be misled. Be strict.`;
 export const NO_CONTEXT_FALLBACK = "文档中未提及相关内容。";
 
 export function buildContextBlock(chunks: ContextChunk[]): string {
-  if (chunks.length === 0) return "<CONTEXT>\n(无相关内容 / no relevant content)\n</CONTEXT>";
+  if (chunks.length === 0)
+    return "<CONTEXT>\n(无相关内容 / no relevant content)\n</CONTEXT>";
   const lines = chunks.map((c, i) => {
     const docTag = c.documentName ? ` 《${c.documentName}》` : "";
     return `[${i + 1}] (p.${c.pageNumber})${docTag}\n${c.text}`;

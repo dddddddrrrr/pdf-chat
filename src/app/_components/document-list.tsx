@@ -59,9 +59,7 @@ export function DocumentList() {
         <p className="text-ink-subtle font-sans text-sm leading-relaxed">
           暂无文档
         </p>
-        <p className="text-ink-faint font-sans text-xs">
-          上传 PDF 开始提问。
-        </p>
+        <p className="text-ink-faint font-sans text-xs">上传 PDF 开始提问。</p>
       </div>
     );
   }

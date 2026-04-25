@@ -26,9 +26,9 @@ describe("installPromiseTry", () => {
     const installedPromiseTry = getPromiseTry();
     if (!installedPromiseTry) throw new Error("Promise.try was not installed");
 
-    await expect(installedPromiseTry((value: string) => value, "ok")).resolves.toBe(
-      "ok",
-    );
+    await expect(
+      installedPromiseTry((value: string) => value, "ok"),
+    ).resolves.toBe("ok");
   });
 
   test("converts synchronous throws into rejected promises", async () => {

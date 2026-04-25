@@ -14,7 +14,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-Open <http://localhost:3000>, click **Click to choose a PDF**, upload `腾讯2025年度报告.pdf`, wait for the status badge to flip from **PROCESSING** to **READY** (≈30–60 s for a 200-page report — embedding is the bottleneck), then ask away.
+Open <http://localhost:3000>, click **选择或拖入 PDF**, upload `腾讯2025年度报告.pdf`, wait for the status badge to flip from **PROCESSING** to **READY** (≈30–60 s for a 200-page report — embedding is the bottleneck), then ask away.
 
 The SQLite database and uploaded PDFs live in `./data/` and survive `docker compose down && up`.
 
@@ -107,7 +107,7 @@ pnpm test:watch    # interactive
 pnpm check         # eslint + tsc --noEmit
 ```
 
-42 tests across 5 files cover the failure modes most likely to silently regress: chunker boundary handling, cosine math + threshold gate, prompt invariants, ingest orchestration, embedding round-trip. UI and the streaming chat route are verified manually (see screenshots) — see `docs/screenshots/`.
+58 tests across 12 files cover the failure modes most likely to silently regress: chunker boundary handling, cosine math + threshold gate, prompt invariants, ingest orchestration, embedding round-trip, chat route response shaping, and standalone PDF extraction assets. UI and the streaming chat route are verified manually (see screenshots) — see `docs/screenshots/`.
 
 ---
 

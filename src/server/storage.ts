@@ -4,7 +4,8 @@ import { resolve } from "node:path";
 
 import { env } from "~/env";
 
-const uploadDir = () => resolve(process.cwd(), env.UPLOAD_DIR);
+const uploadDir = () =>
+  resolve(/* turbopackIgnore: true */ process.cwd(), env.UPLOAD_DIR);
 
 export async function ensureUploadDir(): Promise<void> {
   await mkdir(uploadDir(), { recursive: true });

@@ -15,7 +15,10 @@ const SOFT_BREAKS = ["\n\n", "\n", "。", "？", "！", "；", ".", "?", "!", ";
 const LOOKBACK_WINDOW = 200;
 
 export function normalizeText(raw: string): string {
-  return raw.replace(/[ \t ]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+  return raw
+    .replace(/[ \t ]+/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 export function chunkPage(
@@ -41,7 +44,10 @@ export function chunkPage(
     let end = Math.min(pos + size, text.length);
 
     if (end < text.length) {
-      const lookbackStart = Math.max(end - LOOKBACK_WINDOW, pos + Math.floor(size / 2));
+      const lookbackStart = Math.max(
+        end - LOOKBACK_WINDOW,
+        pos + Math.floor(size / 2),
+      );
       const slice = text.substring(lookbackStart, end);
       let bestBreak = -1;
       for (const br of SOFT_BREAKS) {

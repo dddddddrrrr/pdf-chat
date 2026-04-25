@@ -67,9 +67,9 @@ describe("rankChunks", () => {
   it("returns chunks sorted by descending score", () => {
     const query = vec([1, 0]);
     const rows = [
-      row("a", 1, "low",      [0, 1]),       // score 0
-      row("b", 2, "perfect",  [1, 0]),       // score 1
-      row("c", 3, "medium",   [1, 0.5]),     // score ≈ 0.894
+      row("a", 1, "low", [0, 1]), // score 0
+      row("b", 2, "perfect", [1, 0]), // score 1
+      row("c", 3, "medium", [1, 0.5]), // score ≈ 0.894
     ];
     const out = rankChunks(rows, query, 5, -Infinity);
     expect(out.map((r) => r.text)).toEqual(["perfect", "medium", "low"]);
@@ -91,8 +91,8 @@ describe("rankChunks", () => {
   it("returns empty when top-1 score < threshold", () => {
     const query = vec([1, 0]);
     const rows = [
-      row("a", 1, "weak match", [0.3, 0.95]),  // score ≈ 0.301
-      row("b", 2, "weaker",      [0.1, 0.99]), // score ≈ 0.100
+      row("a", 1, "weak match", [0.3, 0.95]), // score ≈ 0.301
+      row("b", 2, "weaker", [0.1, 0.99]), // score ≈ 0.100
     ];
     const out = rankChunks(rows, query, 5, 0.5);
     expect(out).toEqual([]);
@@ -101,8 +101,8 @@ describe("rankChunks", () => {
   it("returns the matching chunks when top-1 score >= threshold", () => {
     const query = vec([1, 0]);
     const rows = [
-      row("a", 1, "strong", [0.99, 0.1]),  // score ≈ 0.995
-      row("b", 2, "weak",   [0.3, 0.95]),
+      row("a", 1, "strong", [0.99, 0.1]), // score ≈ 0.995
+      row("b", 2, "weak", [0.3, 0.95]),
     ];
     const out = rankChunks(rows, query, 5, 0.5);
     expect(out).toHaveLength(2);

@@ -131,6 +131,14 @@ export async function retrieve(
   const rows = await baseQuery.where(whereClause);
   if (rows.length === 0) return [];
 
-  const queryVec = new Float32Array(await embedQuery(expandQueryForRetrieval(query)));
-  return rankChunks(rows, queryVec, topK, threshold, expansionTermsForQuery(query));
+  const queryVec = new Float32Array(
+    await embedQuery(expandQueryForRetrieval(query)),
+  );
+  return rankChunks(
+    rows,
+    queryVec,
+    topK,
+    threshold,
+    expansionTermsForQuery(query),
+  );
 }

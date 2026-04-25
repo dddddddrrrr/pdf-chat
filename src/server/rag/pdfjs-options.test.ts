@@ -9,7 +9,9 @@ describe("pdfjsDocumentOptions", () => {
     const options = pdfjsDocumentOptions();
 
     expect(options.cMapUrl).toContain("/cmaps/");
-    expect(options.cMapUrl).toBe(join(process.cwd(), "node_modules", "pdfjs-dist", "cmaps") + "/");
+    expect(options.cMapUrl).toBe(
+      join(process.cwd(), "node_modules", "pdfjs-dist", "cmaps") + "/",
+    );
     expect(options.cMapUrl).not.toMatch(/^file:/);
     expect(options.cMapPacked).toBe(true);
     expect(options.standardFontDataUrl).toContain("/standard_fonts/");
